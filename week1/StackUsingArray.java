@@ -1,3 +1,4 @@
+package week1;
 
 // This is gonna be an implenentaion of a stack (adt) using an array(CDT)
 public class StackUsingArray {
