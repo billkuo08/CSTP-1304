@@ -32,7 +32,7 @@ class Queue {
 
       }
       size += 1;
-
+      
     }
   
     void dequeue() {
@@ -44,11 +44,11 @@ class Queue {
 
     }
 
-    void getFront(){
-        if (front == null) {
-            return;
+    int getFront(){
+        if (front != null) {
+            return front.data;
         }
-        System.out.println(front.data);
+        return -1;
        
     }
 
@@ -82,7 +82,7 @@ class Queue {
       q.enqueue(3);
       q.dequeue(); // remove 1 from the fron the queue
       q.dequeue(); // remove 2
-      q.getFront();  // 3
+      System.out.println(q.getFront());  // 3
       System.out.println(q.getSize());//1
       System.out.println(q.isEmpty());// false
       System.out.println(q.contains(1));// false
