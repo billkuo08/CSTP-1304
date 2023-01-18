@@ -41,22 +41,31 @@ public class DequeueUsingDoublyLinkedList {
 
     }
 
-    void removeFirst(){
-        front = front.next;    
+    void removeFirst() {
+        if (front != null) {
+            DoublyNode tmp = front;
+            front = front.next;
+            front.prev = null;
+            tmp.next = null;
+        }
     }
 
-    void removeLast(){
-        back = back.prev;
+    void removeLast() {
+        if (back != null) {
+            back = back.prev;
+            back.next.prev = null;
+            back.next = null;
+        }
     }
 
     int getLast() {
-
+        //O(1)
         return back.data;
 
     }
 
     int getFirst() {
-
+        //O(1)    
         return front.data;
 
     }
@@ -66,9 +75,9 @@ public class DequeueUsingDoublyLinkedList {
         DequeueUsingDoublyLinkedList aDequeue = new DequeueUsingDoublyLinkedList();
         aDequeue.addFirst(1);
         aDequeue.addFirst(2);
-        //System.out.println(aDequeue.getLast());// 1
+        // System.out.println(aDequeue.getLast());// 1
         aDequeue.addLast(3);
-        //System.out.println(aDequeue.getFirst());// 2
+        // System.out.println(aDequeue.getFirst());// 2
         System.out.println(aDequeue.getLast());// 3
         aDequeue.removeLast();
         System.out.println(aDequeue.getLast());// 1
