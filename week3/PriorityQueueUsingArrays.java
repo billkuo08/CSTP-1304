@@ -40,7 +40,7 @@ public class PriorityQueueUsingArrays {
             arr[i] = arr[i + 1];
 
         }
-
+        numOfElements--;
     }
 
     public static void main(String[] args) {
