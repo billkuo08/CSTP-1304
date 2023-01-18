@@ -68,6 +68,7 @@ public class Queue {
         q.insert(8);
         q.remove();// front to 1
         q.remove();// front to 2
+        q.remove();
         q.insert(9);
         q.insert(5);// back should be 0 
         //System.out.println(q.getFront());// should print 7
