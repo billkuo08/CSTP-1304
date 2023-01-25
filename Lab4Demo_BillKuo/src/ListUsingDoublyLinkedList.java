@@ -1,18 +1,19 @@
 package src;
 
-public class ListUsingDoublyLinkedList implements List {
-  DoublyNode front;
-  DoublyNode back;
-  int numberOfElements = 0;
+public class ListUsingDoublyLinkedList<E> implements List<E> {
+  DoublyNode<E> front;
+  DoublyNode<E> back;
+  int numberOfElements;
 
   ListUsingDoublyLinkedList() {
-
+    front = null;
+    numberOfElements = 0;
   }
 
   // helper function
-  DoublyNode getNode(int position) {
+  DoublyNode<E> getNode(int position) {
     if (position <= numberOfElements) {
-      DoublyNode tmp = front;
+      DoublyNode<E> tmp = front;
       int counter = 1; // first position
       while (tmp.next != null && (counter < position)) {
         counter++;
@@ -23,8 +24,8 @@ public class ListUsingDoublyLinkedList implements List {
     return null;
   }
 
-  public void add(int element) {
-    DoublyNode aNewNode = new DoublyNode();
+  public void add(E element) {
+    DoublyNode<E> aNewNode = new DoublyNode();
     aNewNode.data = element;
 
     if (numberOfElements == 0) {
@@ -43,9 +44,9 @@ public class ListUsingDoublyLinkedList implements List {
 
   }
 
-  public void add(int position, int element) {
-    DoublyNode x = getNode(position);
-    DoublyNode aNewNode = new DoublyNode();
+  public void add(int position, E element) {
+    DoublyNode<E> x = getNode(position);
+    DoublyNode<E> aNewNode = new DoublyNode();
     aNewNode.data = element;
     // @TODO
     // think about the case when position is 1
@@ -69,13 +70,13 @@ public class ListUsingDoublyLinkedList implements List {
    */
   public void remove(int position) {
     // @TODO
-    DoublyNode x = getNode(position);
+    DoublyNode<E> x = getNode(position);
 
     if (front == null) {
       return;
 
     } else {
-    
+
       if (x == front) {
         front = x.next;
       } else if (x == back) {
@@ -92,7 +93,7 @@ public class ListUsingDoublyLinkedList implements List {
 
   }
 
-  public int get(int position) {
+  public E get(int position) {
     return getNode(position).data;
   }
 
@@ -101,7 +102,7 @@ public class ListUsingDoublyLinkedList implements List {
   }
 
   public static void main(String[] args) {
-    ListUsingDoublyLinkedList x = new ListUsingDoublyLinkedList();
+    ListUsingDoublyLinkedList<Integer> x = new ListUsingDoublyLinkedList<Integer>();
     // Position starts from 1
     x.add(10);
     x.add(20);

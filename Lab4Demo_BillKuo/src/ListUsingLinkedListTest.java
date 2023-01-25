@@ -7,15 +7,17 @@ import org.junit.Test;
 
 public class ListUsingLinkedListTest {
   @Test
-  public void test() {
-    List x = new ListUsingLinkedList();
+  public void test() throws Exception {
+    List<Integer> x = new ListUsingLinkedList<Integer>();
     // Position starts from 1
     x.add(10);
     x.add(20);
     x.add(30);
-    assertEquals(30, x.get(3));// 30
+    int y = x.get(3);
+    assertEquals(30, y);// 30
     x.add(1, 5);
-    assertEquals(20, x.get(3));// 20
+    int z = x.get(3);
+    assertEquals(20, z);// 20
     x.remove(3); // 20
     assertEquals(3, x.size());// 3
   }

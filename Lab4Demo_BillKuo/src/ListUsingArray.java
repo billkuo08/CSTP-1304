@@ -1,16 +1,17 @@
 package src;
-class ListUsingArray implements List{
-  Integer[] arr;
+
+public class ListUsingArray<E> implements List<E> {
+  E[] arr;
   int numberOfElements;
   final int ARR_SIZE = 11;
   final int MAX_CAPACITY = ARR_SIZE - 1;
 
   ListUsingArray() {
-    arr = new Integer[ARR_SIZE]; // 10 items
+    arr = (E[])new Object[ARR_SIZE]; // 10 items
     numberOfElements = 0;
   }
 
-  public void add(int element) {
+  public void add(E element) {
     if (numberOfElements != MAX_CAPACITY) {
       numberOfElements = numberOfElements + 1;
       arr[numberOfElements] = element;
@@ -18,7 +19,7 @@ class ListUsingArray implements List{
   }
 
   // position is >= 1
-  public void add(int position, int element) {
+  public void add(int position, E element) {
     if (numberOfElements != MAX_CAPACITY) {
       // shifting to the right >>
       for (int i = numberOfElements; i > position; i--) {
@@ -40,8 +41,11 @@ class ListUsingArray implements List{
     }
   }
 
-  public int get(int position) {
-    return arr[position];
+  public E get(int position) {
+
+    E x = arr[position];
+    return x;
+
   }
 
   public int size() {
@@ -49,7 +53,7 @@ class ListUsingArray implements List{
   }
 
   public static void main(String[] args) {
-    ListUsingArray x = new ListUsingArray();
+    ListUsingArray<Integer> x = new ListUsingArray<Integer>();
     // Position starts from 1
     x.add(10);
     x.add(20);
