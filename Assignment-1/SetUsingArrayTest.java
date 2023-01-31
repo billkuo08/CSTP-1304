@@ -8,7 +8,7 @@ public class SetUsingArrayTest {
     @Test
     public void test() {
         SetUsingArray<Integer> mySet = new SetUsingArray<>();
-        assertEquals(0, mySet.getCurrentSize());
+        assertEquals(true, mySet.isEmpty());
         mySet.add(1);
         mySet.add(2);
         mySet.add(3);
