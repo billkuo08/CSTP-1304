@@ -1,12 +1,12 @@
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class SetUsingLinkedListTest {
-
+public class SetUsingArrayTest {
     @Test
     public void test() {
-        SetUsingLinkedList<Integer> mySet = new SetUsingLinkedList<>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         assertEquals(0, mySet.getCurrentSize());
         mySet.add(1);
         mySet.add(2);
@@ -26,7 +26,7 @@ public class SetUsingLinkedListTest {
         mySet.add(2);
         mySet.add(3); 
         assertEquals(3, mySet.getCurrentSize());//3
-
         
     }
+    
 }
