@@ -14,7 +14,7 @@ public class SetUsingArrayTest {
 
     @Test
     public void sizeAndIsEmptyTest() {
-        SetUsingArray<Integer> mySet = new SetUsingArray<Integer>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
 
         assertTrue(mySet.isEmpty());// Return true because it is empty atm
         assertEquals(0, mySet.getCurrentSize());
@@ -30,7 +30,7 @@ public class SetUsingArrayTest {
 
     @Test
     public void addAndContainTest() {
-        SetUsingArray<Integer> mySet = new SetUsingArray<Integer>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         assertFalse(mySet.contains(1));// Will pass because when set is null, it returns full
         mySet.add(1);// add when set is null
         mySet.add(2);
@@ -45,7 +45,7 @@ public class SetUsingArrayTest {
 
     @Test
     public void removeTest() {
-        SetUsingArray<Integer> mySet = new SetUsingArray<Integer>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         assertFalse(mySet.remove(1));// Return false because the set is empty
         mySet.add(1);
         assertTrue(mySet.remove(1));// Return true when removing from a set with only one element
@@ -63,7 +63,7 @@ public class SetUsingArrayTest {
 
     @Test
     public void clearTest() {
-        SetUsingArray<Integer> mySet = new SetUsingArray<Integer>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         mySet.add(1);
         mySet.add(2);
         mySet.add(3);
@@ -77,7 +77,7 @@ public class SetUsingArrayTest {
 
     @Test
     public void toArrayTest() {
-        SetUsingArray<Integer> mySet = new SetUsingArray<Integer>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         mySet.add(1);
         mySet.add(2);
         mySet.add(3);

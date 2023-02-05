@@ -12,7 +12,7 @@ public class SetUsingSinglyLinkedListTest {
 
     @Test
     public void sizeAndIsEmptyTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<Integer>();
+        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
         assertTrue(mySet.isEmpty());// Return true because it is empty atm
         assertEquals(0, mySet.getCurrentSize());
         mySet.add(1);
@@ -27,7 +27,7 @@ public class SetUsingSinglyLinkedListTest {
 
     @Test
     public void addAndContainTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<Integer>();
+        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
         assertFalse(mySet.contains(1));// Will pass because when set is null, it returns full
         mySet.add(1);// add when set is null
         mySet.add(2);
@@ -42,7 +42,7 @@ public class SetUsingSinglyLinkedListTest {
 
     @Test
     public void removeTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<Integer>();
+        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
         assertFalse(mySet.remove(1));// Return false because the set is empty
         mySet.add(1);
         assertTrue(mySet.remove(1));// Return true when removing from a set with only one element
@@ -60,7 +60,7 @@ public class SetUsingSinglyLinkedListTest {
 
     @Test
     public void clearTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<Integer>();
+        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
         mySet.add(1);
         mySet.add(2);
         mySet.add(3);
@@ -73,7 +73,7 @@ public class SetUsingSinglyLinkedListTest {
 
     @Test
     public void toArrayTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<Integer>();
+        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
         mySet.add(1);
         mySet.add(2);
         mySet.add(3);
