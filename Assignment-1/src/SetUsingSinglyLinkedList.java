@@ -1,10 +1,11 @@
+package src;
 import java.util.LinkedList;
 
 public class SetUsingSinglyLinkedList<T> implements SetInterface<T> {
     Node<T> front;
     int size;
 
-    SetUsingSinglyLinkedList() {
+    public SetUsingSinglyLinkedList() {
         front = null;
         size = 0;
     }
@@ -84,7 +85,7 @@ public class SetUsingSinglyLinkedList<T> implements SetInterface<T> {
                 }
                 tmp = tmp.next;
             }
-        }
+        } 
 
         return false;
         
