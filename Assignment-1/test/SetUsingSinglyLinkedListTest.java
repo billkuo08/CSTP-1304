@@ -68,7 +68,7 @@ public class SetUsingSinglyLinkedListTest {
         assertEquals(4, mySet.getCurrentSize());// Check the size of the set
         mySet.clear();
         assertEquals(0, mySet.getCurrentSize());// Check the size of the set again, should be 0 now
-
+        assertTrue(mySet.isEmpty());
     }
 
     @Test

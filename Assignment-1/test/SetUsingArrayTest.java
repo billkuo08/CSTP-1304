@@ -15,6 +15,7 @@ public class SetUsingArrayTest {
     @Test
     public void sizeAndIsEmptyTest() {
         SetUsingArray<Integer> mySet = new SetUsingArray<Integer>();
+
         assertTrue(mySet.isEmpty());// Return true because it is empty atm
         assertEquals(0, mySet.getCurrentSize());
         mySet.add(1);
@@ -70,8 +71,20 @@ public class SetUsingArrayTest {
         assertEquals(4, mySet.getCurrentSize());// Check the size of the set
         mySet.clear();
         assertEquals(0, mySet.getCurrentSize());// Check the size of the set again, should be 0 now
+        assertTrue(mySet.isEmpty());
 
     }
 
+    @Test
+    public void toArrayTest() {
+        SetUsingArray<Integer> mySet = new SetUsingArray<Integer>();
+        mySet.add(1);
+        mySet.add(2);
+        mySet.add(3);
+        mySet.add(4);
+        assertArrayEquals(mySet.toArray(), new Integer[] {1, 2, 3, 4});// Test if the set became an array
+
+
+    }
  
 }
