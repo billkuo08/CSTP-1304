@@ -1,18 +1,19 @@
-package test;
+
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
 import org.junit.Test;
 
-import src.SetUsingSinglyLinkedList;
-
-public class SetUsingSinglyLinkedListTest {
+public class SetUsingArrayTest {
 
     @Test
     public void sizeAndIsEmptyTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
+
         assertTrue(mySet.isEmpty());// Return true because it is empty atm
         assertEquals(0, mySet.getCurrentSize());
         mySet.add(1);
@@ -27,7 +28,7 @@ public class SetUsingSinglyLinkedListTest {
 
     @Test
     public void addAndContainTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         assertFalse(mySet.contains(1));// Will pass because when set is null, it returns full
         mySet.add(1);// add when set is null
         mySet.add(2);
@@ -42,7 +43,7 @@ public class SetUsingSinglyLinkedListTest {
 
     @Test
     public void removeTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         assertFalse(mySet.remove(1));// Return false because the set is empty
         mySet.add(1);
         assertTrue(mySet.remove(1));// Return true when removing from a set with only one element
@@ -60,7 +61,7 @@ public class SetUsingSinglyLinkedListTest {
 
     @Test
     public void clearTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         mySet.add(1);
         mySet.add(2);
         mySet.add(3);
@@ -69,11 +70,12 @@ public class SetUsingSinglyLinkedListTest {
         mySet.clear();
         assertEquals(0, mySet.getCurrentSize());// Check the size of the set again, should be 0 now
         assertTrue(mySet.isEmpty());
+
     }
 
     @Test
     public void toArrayTest() {
-        SetUsingSinglyLinkedList<Integer> mySet = new SetUsingSinglyLinkedList<>();
+        SetUsingArray<Integer> mySet = new SetUsingArray<>();
         mySet.add(1);
         mySet.add(2);
         mySet.add(3);
@@ -82,5 +84,5 @@ public class SetUsingSinglyLinkedListTest {
 
 
     }
-
+ 
 }
