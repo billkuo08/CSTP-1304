@@ -57,12 +57,15 @@ public class SetUsingDoublyLinkedList<T> implements SetInterface<T> {
             return true;
 
         } else {
-            DoublyNode x = front;
-            while (x.next != null) {
-                if (x.data.equals(newEntry)) {
+            DoublyNode<T> tmp2 = front;
+            while (tmp2.next != null) {
+                if (tmp2.data.equals(newEntry)) {
                     return false;
                 }
-                x = x.next;
+                tmp2 = tmp2.next;
+            }
+            if(tmp2.data.equals(newEntry)) {
+                return false;
             }
             back.next = tmp;
             tmp.prev = back;
