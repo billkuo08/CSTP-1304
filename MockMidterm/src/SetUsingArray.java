@@ -10,7 +10,7 @@ public class SetUsingArray<T> implements SetInterface<T> {
 
     public SetUsingArray() {
         arr = (T[]) new Object[CAPACITY];
-        size = 1;
+        size = 0;
 
     }
 

@@ -5,6 +5,7 @@ public class CircularNode<T> {
     CircularNode<T> next;
 
     CircularNode() {
+        data = null;
         next = null;
     }
 }

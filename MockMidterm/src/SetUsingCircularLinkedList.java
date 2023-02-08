@@ -4,7 +4,6 @@ import java.util.*;
 
 public class SetUsingCircularLinkedList<T> {
     private CircularNode<T> front;
-    private CircularNode<T> back;
     private int size;
 
     public SetUsingCircularLinkedList() {
@@ -12,12 +11,15 @@ public class SetUsingCircularLinkedList<T> {
         size = 0;
     }
 
-    public int size() {
+    public int getCurrentSize() {
         return size;
     }
 
     public boolean isEmpty() {
-        return size == 0;
+        if (size == 0) {
+            return true;
+        }
+        return false;
     }
 
     public boolean add(T aNewEntry) {
@@ -25,6 +27,7 @@ public class SetUsingCircularLinkedList<T> {
         if (front == null) {
             front = newNode;
             front.next = front;
+            size++;
             return true;
         } else {
             CircularNode<T> tmp = front;
@@ -42,8 +45,70 @@ public class SetUsingCircularLinkedList<T> {
 
     }
 
-    // public boolean remove(T anEntry) {
+    public boolean remove(T anEntry) {
+        if (front == null) {
+            return false;
+        }
+        if (front.data.equals(anEntry)) {
+            if (front.next == front) {
+                front = null;
+                size--;
+                return true;
+            } else {
+                CircularNode<T> tmp = front;
+                while (tmp.next != front) {
+                    front = front.next;
+                }
+                tmp.next = front.next;
+                front = front.next;
+                size--;
+                return true;
+            }
+        } else {
+            CircularNode<T> tmp = front;
+            while (tmp.next != front && !tmp.next.data.equals(anEntry)) {
+                tmp = tmp.next;
+            }
+            if (tmp.next.data.equals(anEntry)) {
+                tmp.next = tmp.next.next;
+                size--;
+                return true;
+            }
+        }
+        return false;
 
-    // }
+    }
+
+    public boolean contains(T anEntry) {
+        if (front == null) {
+            return false;
+        }
+        CircularNode<T> tmp = front;
+        do {
+            if (tmp.data.equals(anEntry)) {
+                return true;
+            }
+            tmp = tmp.next;
+        } while (tmp != front);
+
+        return false;
+    }
+
+    public void clear() {
+        if (front != null) {
+            front = null;
+            size = 0;
+        }
+    }
+
+    public T[] toArray() {
+        T[] arr = (T[]) new Object[size];
+        CircularNode<T> tmp = front;
+        for (int i = 0; i < size; i++) {
+            arr[i] = tmp.data;
+            tmp = tmp.next;
+        }
+        return arr;
+    }
 
 }
