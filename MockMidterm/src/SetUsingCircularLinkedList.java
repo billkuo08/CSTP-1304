@@ -23,20 +23,22 @@ public class SetUsingCircularLinkedList<T> {
     }
 
     public boolean add(T aNewEntry) {
-        CircularNode<T> newNode = new CircularNode();
         if (front == null) {
-            front = newNode;
+            front = new CircularNode<T>();
+            front.data = aNewEntry;
             front.next = front;
             size++;
             return true;
         } else {
-            CircularNode<T> tmp = front;
-            while (tmp.next != front && tmp.data != aNewEntry) {
-                tmp = tmp.next;
-            }
-            if (tmp.data != aNewEntry) {
-                tmp.next = newNode;
+            if (!contains(aNewEntry)) {
+                CircularNode<T> tmp = front;
+                while (tmp.next != front) {
+                    tmp = tmp.next;
+                }
+                CircularNode<T> newNode = new CircularNode<T>();
+                newNode.data = aNewEntry;
                 newNode.next = front;
+                tmp.next = newNode;
                 size++;
                 return true;
             }
@@ -49,32 +51,22 @@ public class SetUsingCircularLinkedList<T> {
         if (front == null) {
             return false;
         }
-        if (front.data.equals(anEntry)) {
-            if (front.next == front) {
-                front = null;
-                size--;
-                return true;
-            } else {
-                CircularNode<T> tmp = front;
-                while (tmp.next != front) {
+        CircularNode<T> tmp = front;
+        CircularNode<T> prev = null;
+        do {
+            if (tmp.data.equals(anEntry)) {
+                if (tmp == front) {
                     front = front.next;
+                } else {
+                    prev.next = tmp.next;
                 }
-                tmp.next = front.next;
-                front = front.next;
                 size--;
                 return true;
             }
-        } else {
-            CircularNode<T> tmp = front;
-            while (tmp.next != front && !tmp.next.data.equals(anEntry)) {
-                tmp = tmp.next;
-            }
-            if (tmp.next.data.equals(anEntry)) {
-                tmp.next = tmp.next.next;
-                size--;
-                return true;
-            }
-        }
+            prev = tmp;
+            tmp = tmp.next;
+        } while (tmp != front);
+
         return false;
 
     }
@@ -90,15 +82,12 @@ public class SetUsingCircularLinkedList<T> {
             }
             tmp = tmp.next;
         } while (tmp != front);
-
         return false;
     }
 
     public void clear() {
-        if (front != null) {
-            front = null;
-            size = 0;
-        }
+        front = null;
+        size = 0;
     }
 
     public T[] toArray() {
