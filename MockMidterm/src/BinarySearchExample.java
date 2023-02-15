@@ -55,4 +55,6 @@ public class BinarySearchExample {
         }
         return -1; // target not found
     }
+
+    
 }
