@@ -29,4 +29,6 @@ public interface SetInterface<T> {
     public boolean contains(T anEntry);
     //Return an array
     public T[] toArray();
+
+    
 }
