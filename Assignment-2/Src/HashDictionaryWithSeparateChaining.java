@@ -1,4 +1,5 @@
 package Src;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,6 @@ public class HashDictionaryWithSeparateChaining<K, V> {
     private List<Entry<K, V>>[] myDict;
     private int size;
 
-    
     private static class Entry<K, V> {
         private K key;
         private V value;
@@ -52,7 +52,7 @@ public class HashDictionaryWithSeparateChaining<K, V> {
         }
         for (Entry<K, V> entry : tmp) {
             if (entry.getKey().equals(key)) {
-                entry.setValue(value);
+                tmp.add(entry);
                 return;
             }
         }
@@ -86,7 +86,10 @@ public class HashDictionaryWithSeparateChaining<K, V> {
         for (Entry<K, V> entry : tmp) {
             if (entry.getKey().equals(key)) {
                 tmp.remove(entry);
-                size--;
+                if(tmp.isEmpty()) {
+                    myDict[index] = null;
+                    size--;
+                }
                 return;
             }
         }
@@ -99,7 +102,6 @@ public class HashDictionaryWithSeparateChaining<K, V> {
     public int size() {
         return size;
     }
-    
 
     private void resize() {
         List<Entry<K, V>>[] tmp = myDict;

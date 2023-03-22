@@ -14,6 +14,9 @@ public class SeparateChainingTest {
         dict.insert("C", 3);
         dict.insert("D", 4);
         dict.insert("E", 5);
+     
+
+
         assertEquals(5, dict.size());
 
     }
@@ -26,6 +29,8 @@ public class SeparateChainingTest {
         dict.insert("C", 3);
         dict.insert("D", 4);
         dict.insert("E", 5);
+        dict.insert("A", 2);// testing the chain list
+        dict.insert("B", 3);
         assertEquals(5, dict.size());
         assertEquals(1, (int) dict.get("A"));
         assertEquals(2, (int) dict.get("B"));
@@ -43,10 +48,17 @@ public class SeparateChainingTest {
         dict.insert("C", 3);
         dict.insert("D", 4);
         dict.insert("E", 5);
+        dict.insert("A", 2);// testing the chain list
+        dict.insert("B", 3);
         assertEquals(5, dict.size());
-        dict.remove("A");
-        assertFalse(dict.containsKey("A"));
-        assertEquals(4, dict.size());
+        dict.remove("A");// first remove
+        assertTrue(dict.containsKey("A"));// still contains key A
+        assertEquals(5, dict.size());
+        dict.remove("A");// second remove
+        assertFalse(dict.containsKey("A"));// Now it's all gone
+        assertEquals(4, dict.size());// size reduced to 3
+
+
     }
 
     @Test
