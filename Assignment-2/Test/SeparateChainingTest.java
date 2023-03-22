@@ -13,10 +13,7 @@ public class SeparateChainingTest {
         dict.insert("B", 2);
         dict.insert("C", 3);
         dict.insert("D", 4);
-        dict.insert("E", 5);
-     
-
-
+        dict.insert("E", 5);  
         assertEquals(5, dict.size());
 
     }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class HashDictionaryWithSeparateChaining<K, V> {
 
-    private static final int TABLE_CAPACITY = 10;
+    private static final int INITIAL_CAPACITY = 10;
     private static final float RESIZE_FACTOR = 0.8f;
 
     private List<Entry<K, V>>[] myDict;
@@ -28,19 +28,17 @@ public class HashDictionaryWithSeparateChaining<K, V> {
             return value;
         }
 
-        public void setValue(V value) {
-            this.value = value;
-        }
+       
     }
 
     public HashDictionaryWithSeparateChaining() {
-        myDict = new ArrayList[TABLE_CAPACITY];
+        myDict = new ArrayList[INITIAL_CAPACITY];
         size = 0;
     }
 
     private int getIndex(K key) {
         int hash = key.hashCode();
-        return hash % TABLE_CAPACITY;
+        return hash % INITIAL_CAPACITY;
     }
 
     public void insert(K key, V value) {

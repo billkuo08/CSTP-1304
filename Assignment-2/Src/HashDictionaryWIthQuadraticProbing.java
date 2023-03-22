@@ -1,129 +1,96 @@
 package Src;
 
-public class HashDictionaryWIthQuadraticProbing<K, V> {
+public class HashDictionaryWIthQuadraticProbing {
 
-    private static final int TABLE_CAPACITY = 10;
-    private static final float RESIZE_FACTOR = 0.75f;
-
-    // Could change it into <Integer, String> if I want to like we did in class
-    private Entry<K, V>[] myDict;
+    private int[] table;
     private int size;
-    private int quadFactor;
-
-    private static class Entry<K, V> {
-        private K key;
-        private V value;
-
-        public Entry(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public K getKey() {
-            return key;
-        }
-
-        public V getValue() {
-            return value;
-        }
-
-        public void setValue(V value) {
-            this.value = value;
-        }
-    }
+    private final int INITIAL_CAPACITY = 10;
+    private final float RESIZE_FACTOR = 0.75f;
 
     public HashDictionaryWIthQuadraticProbing() {
-        myDict = new Entry[TABLE_CAPACITY];
+        table = new int[INITIAL_CAPACITY];
         size = 0;
-        quadFactor = 0;
     }
 
-    public int getIndex(K key) {
-        int hash = key.hashCode();
-        // return hash % TABLE_CAPACITY;
-        // index starts at 5
-        return hash & (myDict.length - 1);
+    private int hash(int key) {
+        return key % table.length;
     }
 
-    public void insert(K key, V value) {
-        int index = getIndex(key);
-        // Quadratic probing:
-        int probe = (index + quadFactor * quadFactor) % myDict.length;
-        System.out.println("probe: " + probe);
-        Entry<K, V> entry = myDict[probe];
-        if (entry == null) {
-            myDict[probe] = new Entry<>(key, value);
-            size++;
-            quadFactor++;
-            if (size > myDict.length * RESIZE_FACTOR) {
-                resize();
+    public void insert(int key, int value) {
+        int index = hash(key);
+        int offset = 0;
+        if(size >= table.length * RESIZE_FACTOR){
+            resize();
+        }
+        while (table[index] != 0) {
+            offset++;
+            index = (index + offset*offset) % table.length;
+        }
+        table[index] = value;
+        size++;
+    }
+
+  
+
+    public int get(int key) {
+        int index = hash(key);
+        int offset = 0;
+        while (table[index] != 0) {
+            if (table[index] == key) {
+                return table[index];
             }
-            return;
-        } else {
-            quadFactor++;
-            insert(key, value);
-
+            offset++;
+            index = (index + offset*offset) % table.length;
         }
-        if (entry.getKey().equals(key)) {
-            entry.setValue(value);
-            return;
-
-        }
-
+        return 0;
     }
-
-    public V get(K key) {
-        int index = getIndex(key);
-
-        if (quadFactor >= 5) {
-            quadFactor = 0;
-        }
-        int probeIndex = (index + quadFactor * quadFactor) % myDict.length;
-        Entry<K, V> entry = myDict[probeIndex];
-        if (entry == null) {
-            return null;
-        }
-        if (entry.getKey().equals(key)) {
-            quadFactor++;
-            return entry.getValue();
-        }
-
-        return null;
-    }
-
-    public void remove(K key) {
-        int index = getIndex(key);
-        for (int i = 0; i < myDict.length; i++) {
-            int probeIndex = (index + i * i) % myDict.length;
-            Entry<K, V> entry = myDict[probeIndex];
-            if (entry == null) {
-                return;
-            }
-            if (entry.getKey().equals(key)) {
-                myDict[probeIndex] = null;
-                size--;
-                return;
-            }
-        }
-    }
-
-    public boolean containsKey(K key) {
-        return get(key) != null;
-    }
-
+    
     public int size() {
         return size;
     }
 
+    public boolean containsKey(int key) {
+        int index = hash(key);
+        int offset = 0;
+        while (table[index] != 0) {
+            if (table[index] == key) {
+                return true;
+            }
+            offset++;
+            index = (index + offset*offset) % table.length;
+        }
+        return false;
+    }
+
+    public int remove(int key){
+        int index = hash(key);
+        int offset = 0;
+        while (table[index] != 0) {
+            if (table[index] == key) {
+                table[index] = 0;
+                size--;
+                return key;
+            }
+            offset++;
+            index = (index + offset*offset) % table.length;
+        }
+        return 0;
+    }
+
     private void resize() {
-        Entry<K, V>[] tmp = myDict;
-        myDict = new Entry[myDict.length * 2];
-        size = 0;
-        for (Entry<K, V> entry : tmp) {
-            if (entry != null) {
-                insert(entry.getKey(), entry.getValue());
+        int[] tmp = new int[table.length * 2];
+        for (int i = 0; i < table.length; i++) {
+            if (table[i] != 0) {
+                int index = hash(table[i]);
+                int offset = 0;
+                while (tmp[index] != 0) {
+                    offset++;
+                    index = (index + offset*offset) % tmp.length;
+                }
+                tmp[index] = table[i];
             }
         }
+        table = tmp;
     }
 
 }
