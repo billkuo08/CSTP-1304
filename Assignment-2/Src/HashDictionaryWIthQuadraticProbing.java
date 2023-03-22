@@ -5,43 +5,46 @@ public class HashDictionaryWIthQuadraticProbing {
     private int[] hashTable;
     private int size;
     private final int INITIAL_CAPACITY = 10;
-    private final float RESIZE_FACTOR = 0.75f;
+    private final float RESIZE_FACTOR = 0.8f;
 
     public HashDictionaryWIthQuadraticProbing() {
         hashTable = new int[INITIAL_CAPACITY];
         size = 0;
     }
 
-    private int hash(int key) {
+    private int hashIndex(int key) {
         return key % hashTable.length;
     }
 
     public void insert(int key, int value) {
-        int index = hash(key);
-        int offset = 0;
-        if (size >= hashTable.length * RESIZE_FACTOR) {
-            resize();
-        }
+        int index = hashIndex(key);
+        int quadFactor = 0;        
         while (hashTable[index] != 0) {
-            offset++;
             // Quadratic probing formula
-            index = (index + offset * offset) % hashTable.length;
+            quadFactor++;
+            index = (index + quadFactor * quadFactor) % hashTable.length;
+            // index = (1 + quadFactor * quadFactor) % hashTable.length;
+
         }
-        System.out.println("index: " + index);
+
+        System.out.println("index: " + index + " value: " + value);
         hashTable[index] = value;
         size++;
+        if (size > hashTable.length * RESIZE_FACTOR) {
+            resize();
+        }
     }
 
     public int get(int key) {
-        int index = hash(key);
-        int offset = 0;
+        int index = hashIndex(key);
+        int quadFactor = 0;
         while (hashTable[index] != 0) {
             if (hashTable[index] == key) {
                 return hashTable[index];
             }
-            offset++;
+            quadFactor++;
             // Quadratic probing formula
-            index = (index + offset * offset) % hashTable.length;
+            index = (index + quadFactor * quadFactor) % hashTable.length;
         }
         return 0;
     }
@@ -51,31 +54,31 @@ public class HashDictionaryWIthQuadraticProbing {
     }
 
     public boolean containsKey(int key) {
-        int index = hash(key);
-        int offset = 0;
+        int index = hashIndex(key);
+        int quadFactor = 0;
         while (hashTable[index] != 0) {
             if (hashTable[index] == key) {
                 return true;
             }
-            offset++;
+            quadFactor++;
             // Quadratic probing formula
-            index = (index + offset * offset) % hashTable.length;
+            index = (index + quadFactor * quadFactor) % hashTable.length;
         }
         return false;
     }
 
     public int remove(int key) {
-        int index = hash(key);
-        int offset = 0;
+        int index = hashIndex(key);
+        int quadFactor = 0;
         while (hashTable[index] != 0) {
             if (hashTable[index] == key) {
                 hashTable[index] = 0;
                 size--;
                 return key;
             }
-            offset++;
+            quadFactor++;
             // Quadratic probing formula
-            index = (index + offset * offset) % hashTable.length;
+            index = (index + quadFactor * quadFactor) % hashTable.length;
         }
         return 0;
     }
@@ -84,12 +87,12 @@ public class HashDictionaryWIthQuadraticProbing {
         int[] tmp = new int[hashTable.length * 2];
         for (int i = 0; i < hashTable.length; i++) {
             if (hashTable[i] != 0) {
-                int index = hash(hashTable[i]);
-                int offset = 0;
+                int index = hashIndex(hashTable[i]);
+                int quadFactor = 0;
                 while (tmp[index] != 0) {
-                    offset++;
+                    quadFactor++;
                     // Quadratic probing formula
-                    index = (index + offset * offset) % tmp.length;
+                    index = (index + quadFactor * quadFactor) % tmp.length;
                 }
                 tmp[index] = hashTable[i];
             }

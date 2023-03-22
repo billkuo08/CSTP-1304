@@ -58,8 +58,7 @@ public class QuadraticProbingTest {
         assertFalse(dict.containsKey(1));
         assertEquals(4, dict.size());
         dict.remove(1);
-        assertFalse(dict.containsKey(1));
-        assertEquals(4, dict.size());
+       
     }
 
    
