@@ -35,23 +35,23 @@ class Heap {
         int rightChildIndex = 2 * i + 2;
         int leftChildElement = arr[2 * i + 1];
         int rightChildElement = arr[2 * i + 2];
-        // while (2 * i + 1 <= lastIndex), alternative condition
-        while (leftChildElement > arr[i] || rightChildElement > arr[i]) {
-            int maxIndex;
+        int maxIndex = i;
+        while (maxIndex < lastIndex) {
+            // while (leftChildElement > arr[i] || rightChildElement > arr[i]) {
             if (leftChildElement > rightChildElement) {
                 maxIndex = leftChildIndex;
             } else {
                 maxIndex = rightChildIndex;
             }
             swap(maxIndex, i);
-            
+
             // update i
             i = maxIndex;
 
             leftChildIndex = 2 * i + 1;
-            rightChildIndex = 2 * i + 2;        
+            rightChildIndex = 2 * i + 2;
 
-            if(leftChildIndex > lastIndex || rightChildIndex > lastIndex)
+            if (leftChildIndex > lastIndex || rightChildIndex > lastIndex)
                 break;
 
             leftChildElement = arr[2 * i + 1];
@@ -95,13 +95,14 @@ class Heap {
     }
 
     public static void main(String[] args) {
+        //test case icls insertion
         Heap aHeapTree = new Heap();
-        // aHeapTree.insert(81);
-        // // Expected heap {98,86,81,13,65,41,29,9,10,44,23,21,17,32}
-        // // assert the new size 14
+        // aHeapTree.insert(81); // { 98, 86, 81, 13, 65, 32, 41, 9, 10, 44, 23, 21, 17,
+        // 29 }; // Expected Heap
+        // // assert the new size - 14
 
         // test case 2 removal
-        aHeapTree.remove();// Expected heap {86,81,41,13,65,32,29,9,10,44,23,21,17}
+        aHeapTree.remove();// { 86, 65, 41, 13, 44, 32, 29, 9, 10, 17, 23, 21}; // Expected Heap
 
     }
 }
