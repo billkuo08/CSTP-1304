@@ -3,13 +3,13 @@ package Src;
 public class HashDictionaryWIthQuadraticProbing<K, V> {
 
     private static final int TABLE_CAPACITY = 10;
-    private static final float RESIZE_FACTOR = 0.8f;
+    private static final float RESIZE_FACTOR = 0.75f;
 
-    //Could change it into <Integer, String> if I want to like we did in class
+    // Could change it into <Integer, String> if I want to like we did in class
     private Entry<K, V>[] myDict;
     private int size;
+    private int quadFactor;
 
-    
     private static class Entry<K, V> {
         private K key;
         private V value;
@@ -35,51 +35,59 @@ public class HashDictionaryWIthQuadraticProbing<K, V> {
     public HashDictionaryWIthQuadraticProbing() {
         myDict = new Entry[TABLE_CAPACITY];
         size = 0;
+        quadFactor = 0;
     }
 
-    
     public int getIndex(K key) {
         int hash = key.hashCode();
-        // return hash % TABLE_CAPACITY; 
+        // return hash % TABLE_CAPACITY;
         // index starts at 5
         return hash & (myDict.length - 1);
     }
-    
+
     public void insert(K key, V value) {
         int index = getIndex(key);
-        for (int i = 0; i < myDict.length;) {
-            //Quadratic probing:
-            int probe = (index + i * i) % myDict.length;
-            System.out.println("probe: " + probe);
-            Entry<K, V> entry = myDict[probe];
-            if (entry == null) {
-                myDict[probe] = new Entry<>(key, value);
-                size++;
-                if (size > myDict.length * RESIZE_FACTOR) {
-                    resize();
-                }
-                return;
+        // Quadratic probing:
+        int probe = (index + quadFactor * quadFactor) % myDict.length;
+        System.out.println("probe: " + probe);
+        Entry<K, V> entry = myDict[probe];
+        if (entry == null) {
+            myDict[probe] = new Entry<>(key, value);
+            size++;
+            quadFactor++;
+            if (size > myDict.length * RESIZE_FACTOR) {
+                resize();
             }
-            if (entry.getKey().equals(key)) {
-                entry.setValue(value);
-                return;
+            return;
+        } else {
+            quadFactor++;
+            insert(key, value);
 
-            }
         }
+        if (entry.getKey().equals(key)) {
+            entry.setValue(value);
+            return;
+
+        }
+
     }
 
     public V get(K key) {
         int index = getIndex(key);
-        for (int i = 0; i < myDict.length; i++) {
-            int probeIndex = (index + i * i) % myDict.length;
-            Entry<K, V> entry = myDict[probeIndex];
-            if (entry == null) {
-                return null;
-            }
-            if (entry.getKey().equals(key)) {
-                return entry.getValue();
-            }
+
+        if (quadFactor >= 5) {
+            quadFactor = 0;
         }
+        int probeIndex = (index + quadFactor * quadFactor) % myDict.length;
+        Entry<K, V> entry = myDict[probeIndex];
+        if (entry == null) {
+            return null;
+        }
+        if (entry.getKey().equals(key)) {
+            quadFactor++;
+            return entry.getValue();
+        }
+
         return null;
     }
 
@@ -106,7 +114,6 @@ public class HashDictionaryWIthQuadraticProbing<K, V> {
     public int size() {
         return size;
     }
-
 
     private void resize() {
         Entry<K, V>[] tmp = myDict;

@@ -2,42 +2,42 @@ package Test;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import Src.HashDictionaryWIthQuadraticProbing;
+import Src.HashDictionaryWithSeparateChaining;
 
-public class QuadraticProbingTest {
+public class SeparateChainingTest {
 
     @Test
     public void testInsert() {
-        HashDictionaryWIthQuadraticProbing<String, Integer> dict = new HashDictionaryWIthQuadraticProbing<>();
+        HashDictionaryWithSeparateChaining<String, Integer> dict = new HashDictionaryWithSeparateChaining<>();
         dict.insert("A", 1);
         dict.insert("B", 2);
         dict.insert("C", 3);
         dict.insert("D", 4);
-        dict.insert("E", 5);   
+        dict.insert("E", 5);
         assertEquals(5, dict.size());
-       
+
     }
 
     @Test
     public void testGet() {
-        HashDictionaryWIthQuadraticProbing<String, Integer> dict = new HashDictionaryWIthQuadraticProbing<>();
+        HashDictionaryWithSeparateChaining<String, Integer> dict = new HashDictionaryWithSeparateChaining<>();
         dict.insert("A", 1);
         dict.insert("B", 2);
         dict.insert("C", 3);
         dict.insert("D", 4);
-        dict.insert("E", 5);       
+        dict.insert("E", 5);
         assertEquals(5, dict.size());
         assertEquals(1, (int) dict.get("A"));
         assertEquals(2, (int) dict.get("B"));
         assertEquals(3, (int) dict.get("C"));
         assertEquals(4, (int) dict.get("D"));
         assertEquals(5, (int) dict.get("E"));
-      
+
     }
 
     @Test
     public void testRemove() {
-        HashDictionaryWIthQuadraticProbing<String, Integer> dict = new HashDictionaryWIthQuadraticProbing<>();
+        HashDictionaryWithSeparateChaining<String, Integer> dict = new HashDictionaryWithSeparateChaining<>();
         dict.insert("A", 1);
         dict.insert("B", 2);
         dict.insert("C", 3);
@@ -46,15 +46,12 @@ public class QuadraticProbingTest {
         assertEquals(5, dict.size());
         dict.remove("A");
         assertFalse(dict.containsKey("A"));
-        assertEquals(5, dict.size());
-
-
-
+        assertEquals(4, dict.size());
     }
 
     @Test
-    public void testResize(){
-        HashDictionaryWIthQuadraticProbing<String, Integer> dict = new HashDictionaryWIthQuadraticProbing<>();
+    public void testResize() {
+        HashDictionaryWithSeparateChaining<String, Integer> dict = new HashDictionaryWithSeparateChaining<>();
         dict.insert("A", 1);
         dict.insert("B", 2);
         dict.insert("C", 3);
@@ -66,10 +63,9 @@ public class QuadraticProbingTest {
         dict.insert("I", 9);
         dict.insert("J", 10);
         dict.insert("K", 11);
-        dict.insert("L", 12);      
+        dict.insert("L", 12);
         assertEquals(12, dict.size());
-       
-      
+
     }
 
 }
