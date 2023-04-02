@@ -1,7 +1,7 @@
 package src;
 
 public class HeapSort {
-    public static int[] arr;  
+    public int[] arr;  
     int lastIndex;  
 
     public HeapSort() {
@@ -109,8 +109,10 @@ public class HeapSort {
         int size = lastIndex + 1;
         for (int i = 0; i < size; i++) {
             System.out.println(removeRoot());
+            
         }
-
+        
+        //For junit test
         // for (int i = 0; i < size; i++) {
         //     arr[i] = removeRoot();
         // }
@@ -119,8 +121,8 @@ public class HeapSort {
     public static void main(String[] args) {
         int[] arr = {98, 46, 65, 26, 81, 74, 36, 10, 19, 7, 8, 5, 6};
         HeapSort aHeapTree = new HeapSort();         
-        aHeapTree.insert(14);
-        aHeapTree.heapSort(arr, 13);
+        // aHeapTree.insert(14);
+        aHeapTree.heapSort(arr, 12);
         // for (int i = 0; i < arr.length; i++) {
         //     System.out.println(arr[i]);
         // }        
