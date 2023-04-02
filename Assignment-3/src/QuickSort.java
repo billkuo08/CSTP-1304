@@ -45,20 +45,20 @@ public class QuickSort {
         }
     }
 
-    private static void printArr(int[] arr, int size) {
-        for (int i = 0; i < size; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        // System.out.println();
-    }
+    // private static void printArr(int[] arr, int size) {
+    //     for (int i = 0; i < size; i++) {
+    //         System.out.print(arr[i] + " ");
+    //     }
+    //     // System.out.println();
+    // }
 
-    public static void main(String[] args)
-    {
-        int[] arr = { 10, 4, 8, 9, 1,3, 5 };
-        int n = arr.length;
+    // public static void main(String[] args)
+    // {        
+    //     int[] arr = new int[]{ 10, 4, 8, 9, 1, 3, 5 };
+    //     int n = arr.length;
  
-        quickSort(arr, 0, n - 1);
-        System.out.println("Sorted array: ");
-        printArr(arr, n);
-    }
+    //     quickSort(arr, 0, n - 1);
+    //     System.out.println("Sorted array: ");
+    //     printArr(arr, n);
+    // }
 }
