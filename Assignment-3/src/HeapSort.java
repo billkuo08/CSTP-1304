@@ -109,7 +109,7 @@ public class HeapSort {
         // remove the prcess until the heap is empty
         int size = lastIndex + 1;
         for (int i = 0; i < size; i++) {
-            System.out.println(remove());
+            arr[i] = remove();
         }
     }
 
@@ -117,10 +117,12 @@ public class HeapSort {
         HeapSort aHeapTree = new HeapSort(); 
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};        
         aHeapTree.heapSort(arr, 12);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+        
 
     }
-
-
 
 
 }
