@@ -1,35 +1,35 @@
 package src;
 
 public class HeapSort {
-    Integer[] arr;
-    int lastIndex;
+    public static int[] arr;  
+    int lastIndex;  
 
     public HeapSort() {
-        arr = new Integer[100];
-        arr[0] = 1;
-        arr[1] = 2;
-        arr[2] = 3;
-        arr[3] = 4;
-        arr[4] = 5;
-        arr[5] = 6;
-        arr[6] = 7;
-        arr[7] = 8;
-        arr[8] = 9;
-        arr[9] = 10;
-        arr[10] = 11;
-        arr[11] = 12;
-        arr[12] = 13;
+        arr = new int[100];
+        arr[0] = 98;
+        arr[1] = 86;
+        arr[2] = 41;
+        arr[3] = 13;
+        arr[4] = 65;
+        arr[5] = 32;
+        arr[6] = 29;
+        arr[7] = 9;
+        arr[8] = 10;
+        arr[9] = 44;
+        arr[10] = 23;
+        arr[11] = 21;
+        arr[12] = 17;
         lastIndex = 12;
     }
 
-    void insert(int newElement) {
+    public void insert(int newElement) {
         ++lastIndex;
         arr[lastIndex] = newElement;
         bubbleUp(lastIndex);
     }
 
     // bubble up the element at the provided index
-    void bubbleUp(int elementIndex) {
+    void bubbleUp( int elementIndex) {
         int theElementToBeBubbledUp = arr[elementIndex];
         int indexOfTheElementToBeBubbledUp = elementIndex;
         // check whether we need to do swap
@@ -49,7 +49,7 @@ public class HeapSort {
     }
 
     // remove the root from the heap
-    int remove() {
+    int removeRoot() {
         int result = arr[0];
         arr[0] = arr[lastIndex];
         lastIndex--;
@@ -68,7 +68,6 @@ public class HeapSort {
     // bubble down the element at the provided index
     void bubbleDown(int index) {
         int i = index;
-
         int leftChildIndex = 2 * i + 1;
         int rightChildIndex = 2 * i + 2;
         int x = arr[i];
@@ -109,18 +108,22 @@ public class HeapSort {
         // remove the prcess until the heap is empty
         int size = lastIndex + 1;
         for (int i = 0; i < size; i++) {
-            arr[i] = remove();
+            System.out.println(removeRoot());
         }
+
+        // for (int i = 0; i < size; i++) {
+        //     arr[i] = removeRoot();
+        // }
     }
 
     public static void main(String[] args) {
-        HeapSort aHeapTree = new HeapSort(); 
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};        
-        aHeapTree.heapSort(arr, 12);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
-        }
-        
+        int[] arr = {98, 46, 65, 26, 81, 74, 36, 10, 19, 7, 8, 5, 6};
+        HeapSort aHeapTree = new HeapSort();         
+        aHeapTree.insert(14);
+        aHeapTree.heapSort(arr, 13);
+        // for (int i = 0; i < arr.length; i++) {
+        //     System.out.println(arr[i]);
+        // }        
 
     }
 
