@@ -33,4 +33,32 @@ public class HeapSortTest {
         assertArrayEquals(expected, arr);
     }
 
+    // @Test
+    // public void testInsert() {
+    //     int[] arr;
+    //     arr = new int[20];
+    //     arr[0] = 12;
+    //     arr[1] = 11;
+    //     arr[2] = 13;
+    //     arr[3] = 5;
+    //     arr[4] = 6;
+    //     arr[5] = 7; 
+    //     int lastIndex = 5; 
+        
+    //     int[] expected;
+    //     expected = new int[20];
+    //     expected[0] = 5;
+    //     expected[1] = 6;
+    //     expected[2] = 7;
+    //     expected[3] = 10;
+    //     expected[4] = 11;
+    //     expected[5] = 12;
+    //     expected[6] = 13;
+    //     HeapSort myHeapTree = new HeapSort();       
+    //     myHeapTree.insert(arr, 10, lastIndex);        
+    //     myHeapTree.heapSort(arr);
+    //     assertArrayEquals(expected, arr);
+
+    // }
+
 }

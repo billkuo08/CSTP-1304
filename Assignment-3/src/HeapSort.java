@@ -23,8 +23,8 @@ public class HeapSort {
         arr[0] = arr[i];
         arr[i] = tmp;
     }
-    
-    //Traversal of the tree
+
+    // Traversal of the tree
     private void heapify(int arr[], int n, int i) {
 
         int largestIndex = i; // Initialize largest as root
@@ -49,6 +49,40 @@ public class HeapSort {
             heapify(arr, n, largestIndex);
         }
     }
+
+    public void insert(int arr[], int newElement, int lastIndex) {
+        int n = lastIndex + 1;
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
+        
+       
+        arr[n] = newElement;
+        lastIndex++;
+
+        int i = n - 1;
+        while (i > 0 && arr[parent(i)] < arr[i]) {
+            insertSwap(arr, i, parent(i));
+            i = parent(i);
+        }
+
+        // Heapify the entire array again
+        for (int j = n - 1; j > 0; j--) {
+            insertSwap(arr, 0, j);
+            heapify(arr, j, 0);
+        }
+
+    }
+
+    private static int parent(int i) {
+        return (i - 1) / 2;
+    }
+
+    private static void insertSwap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
 
     private static void printArray(int arr[]) {
         int n = arr.length;
