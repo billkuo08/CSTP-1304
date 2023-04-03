@@ -3,14 +3,14 @@ package src;
 public class MergeSortRecursive {
 
     // Break down the array into smaller arrays
-    public void mergeSort(int[] arr, int n) {
-        if (n < 2) {
+    public void mergeSort(int[] arr, int size) {
+        if (size < 2) {
             return;
         }
         // size of left side
-        int mid = n / 2;
+        int mid = size / 2;
         // size of right side
-        int rightOfMid = n - mid;
+        int rightOfMid = size - mid;
         int[] leftTmpArr = new int[mid];
         int[] rightTmpArr = new int[rightOfMid];
         // copy the left side of the array
@@ -18,12 +18,12 @@ public class MergeSortRecursive {
             leftTmpArr[i] = arr[i];
         }
         // copy the right side of the array
-        for (int i = mid; i < n; i++) {
+        for (int i = mid; i < size; i++) {
             rightTmpArr[i - mid] = arr[i];
         }
         // recursive call
         mergeSort(leftTmpArr, mid);
-        mergeSort(rightTmpArr, n - mid);
+        mergeSort(rightTmpArr, size - mid);
 
         // merge all arrays
         merging(arr, leftTmpArr, rightTmpArr, mid, rightOfMid);

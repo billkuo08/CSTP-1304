@@ -25,18 +25,18 @@ public class HeapSort {
     }
 
     // Traversal of the tree
-    private void heapify(int arr[], int n, int i) {
+    private void heapify(int arr[], int size, int i) {
 
         int largestIndex = i; // Initialize largest as root
         int leftChildIndex = 2 * i + 1; // left = 2*i + 1
         int rightChildIndex = 2 * i + 2; // right = 2*i + 2
 
         // If left child is larger than root
-        if (leftChildIndex < n && arr[leftChildIndex] > arr[largestIndex])
+        if (leftChildIndex < size && arr[leftChildIndex] > arr[largestIndex])
             largestIndex = leftChildIndex;
 
         // If right child is larger than largest so far
-        if (rightChildIndex < n && arr[rightChildIndex] > arr[largestIndex])
+        if (rightChildIndex < size && arr[rightChildIndex] > arr[largestIndex])
             largestIndex = rightChildIndex;
 
         // If largest is not root
@@ -46,7 +46,7 @@ public class HeapSort {
             arr[largestIndex] = tmp;
 
             // Recursively heapify the affected sub-tree
-            heapify(arr, n, largestIndex);
+            heapify(arr, size, largestIndex);
         }
     }
 
