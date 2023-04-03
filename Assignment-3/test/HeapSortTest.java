@@ -8,12 +8,11 @@ public class HeapSortTest {
 
     @Test
     public void testHeapSort() {
-        int[] arr = { 98, 86, 41, 13, 65, 32, 29, 9, 10, 44, 23, 21, 17 };
-        int[] expected = { 98, 86, 65, 44, 41, 32, 29, 23, 21, 17, 13, 10, 9 };
+        int[] arr = { 12, 11, 13, 5, 6, 7 };
         HeapSort myHeapTree = new HeapSort();
-        myHeapTree.heapSort(arr, 12);
+        myHeapTree.heapSort(arr);
+        int[] expected = { 5, 6, 7, 11, 12, 13 };
         assertArrayEquals(expected, arr);
-
     }
  
 

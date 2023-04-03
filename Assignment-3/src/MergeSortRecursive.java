@@ -61,14 +61,15 @@ public class MergeSortRecursive {
         }
     }
 
-    // public void main(String[] args) {
-    //     int[] arr = { 5, 1, 6, 2, 3, 4 };;
-    //     int n = arr.length;
-    //     mergeSort(arr, n);
-    //     for(int i = 0; i < n; i++) {
-    //         System.out.print(arr[i] + " ");
-    //     }
+    public static void main(String[] args) {
+        int[] arr = { 5, 1, 6, 2, 3, 4 };;
+        int n = arr.length;
+        MergeSortRecursive myArr = new MergeSortRecursive();
+        myArr.mergeSort(arr, n);
+        for(int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
         
-    // }
+    }
 
 }

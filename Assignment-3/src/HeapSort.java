@@ -1,133 +1,70 @@
 package src;
 
 public class HeapSort {
-    public int[] arr;  
-    int lastIndex;  
+    public void heapSort(int arr[]) {
+        int n = arr.length;
 
-    public HeapSort() {
-        arr = new int[100];
-        arr[0] = 98;
-        arr[1] = 86;
-        arr[2] = 41;
-        arr[3] = 13;
-        arr[4] = 65;
-        arr[5] = 32;
-        arr[6] = 29;
-        arr[7] = 9;
-        arr[8] = 10;
-        arr[9] = 44;
-        arr[10] = 23;
-        arr[11] = 21;
-        arr[12] = 17;
-        lastIndex = 12;
-    }
+        // Build heap (rearrange array)
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
 
-    public void insert(int newElement) {
-        ++lastIndex;
-        arr[lastIndex] = newElement;
-        bubbleUp(lastIndex);
-    }
+        // One by one extract an element from heap
+        for (int i = n - 1; i >= 0; i--) {
+            // Move current root to end
+            swap(arr, i);
 
-    // bubble up the element at the provided index
-    void bubbleUp( int elementIndex) {
-        int theElementToBeBubbledUp = arr[elementIndex];
-        int indexOfTheElementToBeBubbledUp = elementIndex;
-        // check whether we need to do swap
-        // parent of 81
-        int parentIndex = (elementIndex - 1) / 2;
-        int parentElement = arr[parentIndex];
-        while (parentElement < theElementToBeBubbledUp) {
-            swap(parentIndex, indexOfTheElementToBeBubbledUp);
-            indexOfTheElementToBeBubbledUp = parentIndex;
-            parentIndex = (parentIndex - 1) / 2;
-            if (parentElement < 0) {
-                break;
-            }
-            parentElement = arr[parentIndex];
+            // call max heapify on the reduced heap
+            heapify(arr, i, 0);
         }
-
     }
 
-    // remove the root from the heap
-    int removeRoot() {
-        int result = arr[0];
-        arr[0] = arr[lastIndex];
-        lastIndex--;
-        if(lastIndex != 0)
-            bubbleDown(0);
-        return result;
-
+    private void swap(int[] arr, int i) {
+        int tmp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = tmp;
     }
 
-    void swap(int aIndex, int b) {
-        int tmp = arr[aIndex];
-        arr[aIndex] = arr[b];
-        arr[b] = tmp;
-    }
+    private void heapify(int arr[], int n, int i) {
 
-    // bubble down the element at the provided index
-    void bubbleDown(int index) {
-        int i = index;
-        int leftChildIndex = 2 * i + 1;
-        int rightChildIndex = 2 * i + 2;
-        int x = arr[i];
-        int leftChildElement = arr[2 * i + 1];
-        int rightChildElement = arr[2 * i + 2];
+        int largest = i; // Initialize largest as root
+        int l = 2 * i + 1; // left = 2*i + 1
+        int r = 2 * i + 2; // right = 2*i + 2
 
+        // If left child is larger than root
+        if (l < n && arr[l] > arr[largest])
+            largest = l;
 
-        while (leftChildElement >= x ||
-                rightChildElement >= x) {
-            int maxIndex;
-            if (leftChildElement > rightChildElement) {
-                maxIndex = leftChildIndex;
-            } else {
-                maxIndex = rightChildIndex;
-            }
-            swap(maxIndex, i);
+        // If right child is larger than largest so far
+        if (r < n && arr[r] > arr[largest])
+            largest = r;
 
-            // update i
-            i = maxIndex;
+        // If largest is not root
+        if (largest != i) {
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
 
-            leftChildIndex = 2 * i + 1;
-            rightChildIndex = 2 * i + 2;
-            if (leftChildIndex > lastIndex || rightChildIndex > lastIndex)
-                break;
-            leftChildElement = arr[2 * i + 1];
-            rightChildElement = arr[2 * i + 2];
+            // Recursively heapify the affected sub-tree
+            heapify(arr, n, largest);
         }
-
     }
 
-    public void heapSort(int[]arr, int lastIndex) {
-        // Heapify the array
-        for (int i = (lastIndex / 2) - 1; i >= 0; i--) {
-            bubbleDown(i);
-        }
-
-        // remove the root and add it to the end of the array
-        // remove the prcess until the heap is empty
-        int size = lastIndex + 1;
-        for (int i = 0; i < size; i++) {
-            System.out.println(removeRoot());
-            
-        }
-        
-        //For junit test
-        // for (int i = 0; i < size; i++) {
-        //     arr[i] = removeRoot();
-        // }
+    private static void printArray(int arr[]) {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
     }
 
-    public static void main(String[] args) {
-        int[] arr = {98, 46, 65, 26, 81, 74, 36, 10, 19, 7, 8, 5, 6};
-        HeapSort aHeapTree = new HeapSort();         
-        // aHeapTree.insert(14);
-        aHeapTree.heapSort(arr, 12);
-        // for (int i = 0; i < arr.length; i++) {
-        //     System.out.println(arr[i]);
-        // }        
+    // Driver program
+    public static void main(String args[]) {
+        int arr[] = { 12, 11, 13, 5, 6, 7 };
+        int n = arr.length;
 
+        HeapSort ob = new HeapSort();
+        ob.heapSort(arr);
+
+        System.out.println("Sorted array is");
+        printArray(arr);
     }
-
 
 }
