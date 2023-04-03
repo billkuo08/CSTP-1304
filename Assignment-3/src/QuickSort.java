@@ -40,6 +40,7 @@ public class QuickSort {
         if (low < high) {
             // arr[partitionIndex] is now at right place
             int partitionIndex = partition(arr, low, high);
+            // Recursively sort elements after partition
             quickSort(arr, low, partitionIndex - 1);
             quickSort(arr, partitionIndex + 1, high);
         }

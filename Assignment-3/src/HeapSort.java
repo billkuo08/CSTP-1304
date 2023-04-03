@@ -4,16 +4,16 @@ public class HeapSort {
     public void heapSort(int arr[]) {
         int n = arr.length;
 
-        // Build max heap, rearrange array
+        // Build max heap, sort the array
         for (int i = n / 2 - 1; i >= 0; i--)
             heapify(arr, n, i);
 
         // One by one extract an element from heap
         for (int i = n - 1; i >= 0; i--) {
-            // Move current root to end
+            // Move current root to new end
             swap(arr, i);
 
-            // call max heapify on the reduced heap
+            // call max heapify on the newly changed heap
             heapify(arr, i, 0);
         }
     }
@@ -24,22 +24,22 @@ public class HeapSort {
         arr[i] = tmp;
     }
 
-    // Traversal of the tree
+    // Traverse through the tree
     private void heapify(int arr[], int size, int i) {
 
-        int largestIndex = i; // Initialize largest as root
+        int largestIndex = i; // Initialize largest as root, starting at mid
         int leftChildIndex = 2 * i + 1; // left = 2*i + 1
         int rightChildIndex = 2 * i + 2; // right = 2*i + 2
 
-        // If left child is larger than root
+        // Check if left child is larger than root
         if (leftChildIndex < size && arr[leftChildIndex] > arr[largestIndex])
             largestIndex = leftChildIndex;
 
-        // If right child is larger than largest so far
+        // Check if right child is larger than largest so far
         if (rightChildIndex < size && arr[rightChildIndex] > arr[largestIndex])
             largestIndex = rightChildIndex;
 
-        // If largest is not root
+        // If largest is not root, AKA found a larger element than the current root
         if (largestIndex != i) {
             int tmp = arr[i];
             arr[i] = arr[largestIndex];

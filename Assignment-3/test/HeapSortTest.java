@@ -43,8 +43,7 @@ public class HeapSortTest {
     //     arr[3] = 5;
     //     arr[4] = 6;
     //     arr[5] = 7; 
-    //     int lastIndex = 5; 
-        
+    //     int lastIndex = 5;         
     //     int[] expected;
     //     expected = new int[20];
     //     expected[0] = 5;

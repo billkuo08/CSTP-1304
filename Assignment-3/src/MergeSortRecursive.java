@@ -4,6 +4,7 @@ public class MergeSortRecursive {
 
     // Break down the array into smaller arrays
     public void mergeSort(int[] arr, int size) {
+        //Condition to stop the recursive call
         if (size < 2) {
             return;
         }
@@ -23,7 +24,7 @@ public class MergeSortRecursive {
         }
         // recursive call
         mergeSort(leftTmpArr, mid);
-        mergeSort(rightTmpArr, size - mid);
+        mergeSort(rightTmpArr, rightOfMid);
 
         // merge all arrays
         merging(arr, leftTmpArr, rightTmpArr, mid, rightOfMid);

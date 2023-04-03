@@ -43,25 +43,28 @@ public class MergeSortIterative {
         j = 0;
         k = left;
         while (i < size1 && j < size2) {
-
+            //If data in leftTmpArr is smaller or equal to data rightTmpArr then put it into the arr
             if (leftTmpArr[i] <= rightTmpArr[j]) {
                 arr[k] = leftTmpArr[i];
+                //Only increase iterator of leftTmpArr
                 i++;
+            //If data in leftTmpArr is larger than data in rightTmpArr then put the rightTmpArr data into the arr   
             } else {
                 arr[k] = rightTmpArr[j];
+                //Only increase iterator of rightTmpArr
                 j++;
             }
+            //Move the iterator of the original array
             k++;
         }
 
         // Copy the remaining data from both leftTmpArr and rightTmpArr if there are any
-
         while (i < size1) {
             arr[k] = leftTmpArr[i];
             i++;
             k++;
         }
-
+        
         while (j < size2) {
             arr[k] = rightTmpArr[j];
             j++;
