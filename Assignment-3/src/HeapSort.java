@@ -4,7 +4,7 @@ public class HeapSort {
     public void heapSort(int arr[]) {
         int n = arr.length;
 
-        // Build heap (rearrange array)
+        // Build max heap, rearrange array
         for (int i = n / 2 - 1; i >= 0; i--)
             heapify(arr, n, i);
 
@@ -23,29 +23,30 @@ public class HeapSort {
         arr[0] = arr[i];
         arr[i] = tmp;
     }
-
+    
+    //Traversal of the tree
     private void heapify(int arr[], int n, int i) {
 
-        int largest = i; // Initialize largest as root
-        int l = 2 * i + 1; // left = 2*i + 1
-        int r = 2 * i + 2; // right = 2*i + 2
+        int largestIndex = i; // Initialize largest as root
+        int leftChildIndex = 2 * i + 1; // left = 2*i + 1
+        int rightChildIndex = 2 * i + 2; // right = 2*i + 2
 
         // If left child is larger than root
-        if (l < n && arr[l] > arr[largest])
-            largest = l;
+        if (leftChildIndex < n && arr[leftChildIndex] > arr[largestIndex])
+            largestIndex = leftChildIndex;
 
         // If right child is larger than largest so far
-        if (r < n && arr[r] > arr[largest])
-            largest = r;
+        if (rightChildIndex < n && arr[rightChildIndex] > arr[largestIndex])
+            largestIndex = rightChildIndex;
 
         // If largest is not root
-        if (largest != i) {
-            int swap = arr[i];
-            arr[i] = arr[largest];
-            arr[largest] = swap;
+        if (largestIndex != i) {
+            int tmp = arr[i];
+            arr[i] = arr[largestIndex];
+            arr[largestIndex] = tmp;
 
             // Recursively heapify the affected sub-tree
-            heapify(arr, n, largest);
+            heapify(arr, n, largestIndex);
         }
     }
 
@@ -58,10 +59,9 @@ public class HeapSort {
     // Driver program
     public static void main(String args[]) {
         int arr[] = { 12, 11, 13, 5, 6, 7 };
-        int n = arr.length;
 
-        HeapSort ob = new HeapSort();
-        ob.heapSort(arr);
+        HeapSort myHeapTree = new HeapSort();
+        myHeapTree.heapSort(arr);
 
         System.out.println("Sorted array is");
         printArray(arr);
